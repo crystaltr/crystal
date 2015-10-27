@@ -4,14 +4,14 @@ layout: default
 %section
   %h1 Dil Amaçları
   %ul.goals
-    %li Ruby benzeri söz dizimi
-    %li Statically type-checked but without having to specify the type of variables or method arguments.
-    %li Be able to call C code by writing bindings to it in Crystal.
-    %li Have compile-time evaluation and generation of code, to avoid boilerplate code.
-    %li Compile to efficient native code.
+    %li Ruby benzeri söz dizimi.
+    %li Değişken ya da method argümanlarının tiplerini tanımlama zorunluluğu olmadan statik tip kontrolü.
+    %li C kodunu bağlayarak Crystal içinde çağırabilirsiniz.
+    %li Derleme anında değerlendirme ve kod üretimi sayesinde gereksiz kodu önler.
+    %li Efektif makina koduna derlenir.
 
 %section
-  %h1 Nasıl Görünüyor 
+  %h1 Nasıl Görünüyor
   .code_section
     {% include sample_code.md %}
 
@@ -19,19 +19,19 @@ layout: default
   %h1 Durum
   %p
     %ul.goals
-      %li The project is in alpha stage: we are still tweaking the language and standard library.
-      %li The compiler is written in Crystal.
+      %li Crystal projesi hala alfa evresinde olup standart kütüphane ve dil iyileştirilmektedir.
+      %li Crystal derleyicisi Crystal'de yazılmıştır.
 
 %section
   %h1 Topluluk
   %p
-    Post a question or suggest something in our
     %i.ip.group
     %a{href: "https://groups.google.com/forum/?fromgroups#!forum/crystal-lang", target: "_blank"} Google Group
-    or join our IRC channel #crystal-lang at irc.freenode.net
+    'umuza bir soru ya da öneri gönderin
+    ya da IRC kanalımıza katılın; irc.freenode.net içerisinde #crystal-lang
 
 %section
-  %h1 Blogtan Yazılar
+  %h1 Blogdan Yazılar
   .blog_roll
     {% for post in site.posts %}
     %article
