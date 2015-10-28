@@ -1,13 +1,13 @@
-# On Mac OSX using Homebrew
+# Homebrew ile Mac OSX Üzerine 
 
-To easily install Crystall on Mac you can use [Homebrew](http://brew.sh/).
+Crystal'i Mac'e kolayca yüklemek için [Homebrew](http://brew.sh/) kullanabilirsiniz: 
 
 ```
 brew update
 brew install crystal-lang
 ```
 
-If you're planning to contribute to the project you might find useful to install LLVM as well. So replace the last line with:
+Eğer Crystal projesine katkıda bulunmak istiyorsanız ayrıca LLVM yüklemeniz faydalı olabilir. Satırın sonunu şununla değiştirin: 
 
 ```
 brew install crystal-lang --with-llvm
