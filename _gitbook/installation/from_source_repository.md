@@ -1,19 +1,20 @@
-# From sources
+# Kaynak Kod Üzerinden
 
-If you want to contribute then you might want to install Crystal from sources. But Crystal is written in Crystal itself! So you first need to use one of the previous described methods to have a running compiler.
+Eğer Crystal'e katkıda bulunmak istiyorsanız Crystal'i kaynak üzerinden kurmak isteyebilirsiniz.
+ Ama Crystal, Crystal'in kendisiyle yazılmıştır. Bu nedenle öncelikle çalışan bir derleyiciye sahip olmak için daha önce bahsedelen yöntemlerden birini kullanmaya ihtiyacanız var.  
+Ayrıca LLVM 3.5 ya da 3.6'ya path içerisinde ihtiyacınız olacak. Eğer Mac ve HomeBrew yöntemini kullanıyorsanız ve Crystal'i `--with-llvm` ile kurduysanız,
+ otomatik olarak path ayarını sizin için yapacaktır.
 
-You will also need LLVM 3.5 or 3.6 present in the path. If you are using Mac and the Homebrew formula, this will be automatically configured for you if you install Crystal adding `--with-llvm` flag.
-
-Then clone the repository:
+Daha sonra depoyu makinenize klonlayın:
 
 ```
 git clone https://github.com/manastech/crystal.git
 ```
 
-and you're ready to start hacking.
+ve kodlamaya başlamak için hazırsın.
 
-To build your own version of the compiler, run `make`. The new compiler will be placed at `.build/crystal`.
+Kendi derleyici versiyonunuzu yaratmak için, terminalden `make`'i çalıştırın. Yeni derleyici `.build/crystal` altında konumlandırılacaktır.
 
-Make sure to install [all the required libraries](https://github.com/manastech/crystal/wiki/All-required-libraries). You might also want to read the [contributing guide](https://github.com/manastech/crystal/blob/master/Contributing.md).
+[Tüm gerekli kütüphanlerin(https://github.com/manastech/crystal/wiki/All-required-libraries) yüklü olduğundan emin olun. Ayrıca [destekleme rehberini](https://github.com/manastech/crystal/blob/master/Contributing.md) okumak isteyebilirsiniz.
 
-Inside the repository you will also find a wrapper script at `bin/crystal`. This script will execute the global installed compiler or the one that you just compiled (if present).
+Deponun içerisinde `bin/crystal` altında bir betik bulacaksınız. Bu betik global yüklenmiş derleyiciyi ya da eğer varsa henüz derlediğiniz dosyayı çalıştıracaktır.

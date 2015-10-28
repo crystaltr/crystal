@@ -1,6 +1,6 @@
-# On Arch Linux
+# Arch Linux Üzerine
 
-Arch Linux includes the Crystal compiler in the Community repository.
+Arch Linux Crystal derleyicisini topluluk deposunda barındırmaktadır.
 
 ## Install
 
