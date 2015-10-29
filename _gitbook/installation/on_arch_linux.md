@@ -2,7 +2,7 @@
 
 Arch Linux Crystal derleyicisini topluluk deposunda barındırmaktadır.
 
-## Install
+## Kurulum
 
 ```
 sudo pacman -S crystal

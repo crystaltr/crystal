@@ -1,5 +1,5 @@
-# Crystal Programming Language
+# Crystal Programlama Dili
 
-This is the documentation for the Crystal programming language.
+Bu dokümantasyon Crystal programlama dili içindir.
 
-Crystal is a programming language that resembles Ruby but compiles to native code and tries to be much more efficient, at the cost of disallowing certain dynamic aspects of Ruby.
+Crystal, Ruby diline benzeyen, makine koduna derlenen ve Ruby'nin belirli dinamik yönlerinin maliyetini engelleyerek daha efektif olmayı amaçlayan bir programlama dilidir.

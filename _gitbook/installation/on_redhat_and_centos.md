@@ -2,15 +2,15 @@
 
 RedHat türevi dağıtımlarda, resmi Crystal deposunu kullanabilirsiniz.
 
-## Depo Kurulumu
+## Depo kurulumu
 
-Ilk olarak YUM ayar dosyanıza Crystal deposunu eklemelisiniz. Kolayca kurmak için aşağıdaki satırı çalıştırın:
+İlk olarak YUM ayar dosyanıza Crystal deposunu eklemelisiniz. Kolayca kurmak için aşağıdaki komutu çalıştırın:
 
 ```
   curl http://dist.crystal-lang.org/rpm/setup.sh | sudo bash
 ```
 
-Bu giriş anahtarını ve depo ayarlarını ekleyecektir. Dilerseniz manuel olarak da çalıştırabilirsiniz
+Bu giriş anahtarını ve depo ayarlarını ekleyecektir. Dilerseniz manuel olarak da çalıştırabilirsiniz.
 
 ```
 rpm --import http://dist.crystal-lang.org/rpm/RPM-GPG-KEY
@@ -22,16 +22,18 @@ baseurl = http://dist.crystal-lang.org/rpm/
 END
 ```
 
-## Yükleme
-Depo ayarları yapıldığında Crystal'i yüklemeye hazırsınız:
+## Kurulum
+
+Depo ayarları yapıldığında Crystal'i kurmaya hazırsınız:
 
 ```
 sudo yum install crystal
 ```
 
-## Yükseltme
+## Yükseltme(Upgrade)
 
 Yeni bir Crystal sürümü çıkarıldığında bununla sisteminizi yükseltebilirsiniz:
+
 ```
 sudo yum update crystal
 ```

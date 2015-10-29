@@ -1,6 +1,6 @@
 # Kurulum
 
-Derleyiciyi aşağıdaki yöntemlerden birisiyle yüklediğinizde, derleyiciyi nasıl etkili kullanacağınızı öğrenmek için [Derleyici kullanımı](../using_the_compiler/README.md)'ı okuduğunuzdan emin olun.  
+Derleyiciyi aşağıdaki yöntemlerden birisiyle yükledikten sonra, nasıl etkili kullanacağınızı öğrenmek için [Derleyici kullanımı](../using_the_compiler/README.md)'nı okuduğunuzdan emin olun.
 * [Debian ve Ubuntu Üzerine](on_debian_and_ubuntu.html)
 * [RedHat ve CentOS Üzerine](on_redhat_and_centos.html)
 * [Arch Linux Üzerine](on_arch_linux.html)
