@@ -1,10 +1,9 @@
-# Hello World!
+# Merhaba Dünya!
 
-The classic "hello world" program looks like this in Crystal:
+Klasik "hello world" programı Crystal'de şu biçimde:
 
 ```crystal
 puts "Hello world!"
 ```
 
-From this you can see that the main routine is simply the program itself: there's no need to define a "main" function or something similar.
-
+Buradan anlayacağınız üzere programın ana rutini basitçe programın kendisi oluyor. Bir "main" fonksiyonuna ya da ona benzer bir şeye ihtiyaç yok.

@@ -1,19 +1,19 @@
-# Overview
+# Genel Bakış 
 
-You can read this document from top to bottom, but it’s advisable to jump through sections because some concepts are interrelated and can’t be explained in isolation.
+Bu dokümanı baştan sona okuyabilirsiniz ama bölümleri arasında gezinmeniz tavsiye edilir çünkü bazı konseptler birbirleriyle ilişkili ve bu ilişki izolasyon içinde açıklanamıyor. 
 
-In code examples, the comment `#=>` is used to show the value of an expression. For example:
+Kod örneklerindeki, `#=>` yorumu, bir ifadenin değerini göstermek için kullanıldı. Örneğin:
 
 ```crystal
 a = 1 + 2
 a #=> 3
 ```
 
-A comment using `::` is used for showing the type of a variable.
+`::` yorumu, bir değişkenin tipini belirtmek için kullanıldı.
 
 ```crystal
 s = "hello"
 # s :: String
 ```
 
-Let's start with two examples to familiarize ourselves with the language.
+Dile aşina olabilmek için iki örnek ile başlayalım.

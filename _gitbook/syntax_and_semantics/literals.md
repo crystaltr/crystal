@@ -1,3 +1,3 @@
-# Literals
+# Değişmezler
 
-Several literals are available for creating many basic types in the language.
+Dildeki basit tiplerin çoğunu yaratabilmek için birkaç değişmez var.

@@ -1,3 +1,3 @@
-# Syntax and Semantics
+# Söz Dizimi ve Semantik
 
-The program’s source code must be encoded in UTF-8.
+Program'ın kaynak kodu UTF-8 ile kodlanmak zorundadır.
