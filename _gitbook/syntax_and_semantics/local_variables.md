@@ -1,6 +1,6 @@
-# Local değişken
+# Local değişkenler
 
-Local değişkenler küçük harflerle başlarlar. Siz ilk kez bir değere atadığınız zaman onlar deklare edilirler.
+Local değişkenler küçük harflerle başlar. Siz ilk kez bir değere atadığınız zaman onlar deklare edilir.
 
 ```crystal
 name = "Crystal"

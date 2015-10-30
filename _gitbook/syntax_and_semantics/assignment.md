@@ -16,7 +16,7 @@ local = 1
 $global = 4
 ```
 
-Yukarıdaki değişkenler türlerinin her biri daha sonra açıklanacaktır.
+Yukarıdaki değişken türlerinin her biri daha sonra açıklanacaktır.
 
 `=` karakteri içeren bazı syntax sugar vardır:
 
