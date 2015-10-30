@@ -1,6 +1,6 @@
-# Multiple assignment
+# Çoklu atama
 
-You can declare/assign multiple variables at the same time by separating expressions with a comma (`,`):
+Virgül(,) ile ifadeleri ayırarak aynı anda birden fazla değişkene atama/deklare yapabilirsiniz.
 
 ```crystal
 name, age = "Crystal", 1
@@ -12,7 +12,7 @@ name  = temp1
 age   = temp2
 ```
 
-Note that because expressions are assigned to temporary variables it is possible to exchange variables’ contents in a single line:
+Dikkat tek satırda değişkenlerin içeriğini değiştirmek mümkündür çünkü ifadeler geçici değişkenlere atanır.
 
 ```crystal
 a = 1
@@ -22,7 +22,7 @@ a #=> 2
 b #=> 1
 ```
 
-If the right-hand side contains just one expression, it is considered an indexed type and the following syntax sugar applies:
+Eğer sağ taraf tek bir ifade içeriyorsa, sıralanmış tip kabul edilir ve takip eden sözdizimsel şekeri uygular:
 
 ```crystal
 name, age, source = "Crystal,1,github".split(",")
@@ -34,7 +34,7 @@ age    = temp[1]
 source = temp[2]
 ```
 
-If the left-hand side contains just one variable, the right-hand side is considered an array:
+Eğer sol taraf tek bir değişken içeriyorsa, sağ taraf bir array kabul edilir:
 
 ```crystal
 names = "John", "Peter", "Jack"
@@ -43,7 +43,7 @@ names = "John", "Peter", "Jack"
 names = ["John", "Peter", "Jack"]
 ```
 
-Multiple assignment is also available to methods that end with `=`:
+Çoklu atamada `=` ile sonlanan yöntemler de mevcuttur:
 
 ```crystal
 person.name, person.age = "John", 32
@@ -55,7 +55,8 @@ person.name = temp1
 person.age = temp2
 ```
 
-And it is also available to indexers (`[]=`):
+TODO indexers
+Ve aynı zamanda indexers(`[]=`) mevcuttur:
 
 ```crystal
 objects[1], objects[2] = 3, 4
