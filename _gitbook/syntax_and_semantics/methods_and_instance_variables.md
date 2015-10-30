@@ -1,94 +1,95 @@
-# Methods and instance variables
+# Methodlar ve Örnek Değişkenler(Instance Variables)
 
-We can simplify our constructor by using a shorter syntax for assigning a method argument to an instance variable:
+Initialize methodumuza aldığımız argümanı örnek değişkene atamak için daha kısa yolu kullanarak methodumuzu basitleştirebiliriz:
 
 ```crystal
-class Person
-  def initialize(@name)
-    @age = 0
+class Insan
+  def initialize(@isim)
+    @yas = 0
   end
 end
 ```
 
-Right now, we can't do much with a person: create it with a name, ask for its name and for its age, which will always be zero. So lets add a method that makes a person become older:
+Şu an, bir insan ile daha fazlasını yapamayız: bir isimle oluşturuyoruz, ismini ve yaşını soruyoruz ve yaşı her zaman 0 geliyor. Öyleyse insanımızı yaşlandıran bir method yazalım:
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Insan
+  def yaslandir
+    @yas += 1
   end
 end
 
-john = Person.new "John"
-peter = Person.new "Peter"
+osman = Insan.new "Osman"
+kemal = Insan.new "Kemal"
 
-john.age #=> 0
+osman.yas #=> 0
 
-john.become_older
-john.age #=> 1
+osman.yaslandir
+osman.yas #=> 1
 
-peter.age #=> 0
+kemal.yas #=> 0
 ```
 
-Method names begin with a lowercase letter and, as a convention, only use lowercase letters, underscores and numbers.
+Method isimlerinin genel kullanımı; küçük harfle başlar. Alt çizgi ve sayi ile de başlayabilir.
 
-As a side note, we can define `become_older` inside the original `Person` definition, or in a separate definition: Crystal combines all definitions into a single class. The following works just fine:
+Yan bilgi olarak, `yaslandir` methodunu orjinal `Insan` sınıfı içinde tanımlayabildiğimiz gibi ayrı bir yerde de tanımlayabiliriz:
+Crystal tüm tanımlamaları tek bir sınıf içerisinde toplar. Aşağıdaki kod tamamen geçerlidir:
 
 ```crystal
-class Person
-  def initialize(@name)
-    @age = 0
+class Insan
+  def initialize(@isim)
+    @yas = 0
   end
 end
 
-class Person
-  def become_older
-    @age += 1
+class Insan
+  def yaslandir
+    @yas += 1
   end
 end
 ```
 
-## Redefining methods, and previous_def
+## Methodları yeniden tanımlama ve previous_def
 
-If you redefine a method, the last definition will take precedence.
+Eğer bir methodu tekrar tanımlarsak farklı bir yerde aynı sınıf içerisinde son tanımlanan çağırılır.
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Insan
+  def yaslandir
+    @yas += 1
   end
 end
 
-class Person
-  def become_older
-    @age += 2
+class Insan
+  def yaslandir
+    @yas += 2
   end
 end
 
-person = Person.new "John"
-person.become_older
-person.age #=> 2
+insan = Insan.new "Osman"
+insan.yaslandir
+insan.yas #=> 2
 ```
 
-You can invoke the previously redefined method with `previous_def`:
+`previous_def` ile önce tanımlanmış methodu çağırabilirsiniz:
 
 ```crystal
-class Person
-  def become_older
-    @age += 1
+class Insan
+  def yaslandir
+    @yas += 1
   end
 end
 
-class Person
-  def become_older
+class Insan
+  def yaslandir
     previous_def
-    @age += 2
+    @yas += 2
   end
 end
 
-person = Person.new "John"
-person.become_older
-person.age #=> 3
+insan = Insan.new "Osman"
+insan.yaslandir
+insan.yas #=> 3
 ```
 
-Without arguments nor parenthesis, `previous_def` receives the same arguments as the method's arguments. Otherwise, it receives the arguments you pass to it.
+Argüman ve parantezler olmadan, `previous_def` methodmuş gibi methodun ayni argümanlarını alır. Eğer argüman verilirse onları da alır.

@@ -1,10 +1,10 @@
-# Classes and methods
+# Sınıflar ve methodlar
 
-A class is a blueprint from which individual objects are created. As an example, consider a `Person` class. You declare a class like this:
+Sınıflar, her bir nesnenin oluşturulduğu tasarım planıdır(blueprint). Örnek olarak `Insan` sınıfını ele alalım. Bir sınıfı şöyle tanımlarsınız:
 
 ```crystal
-class Person
+class Insan
 end
 ```
 
-Class names, and every type name, begin with a capital letter in Crystal.
+Crystal'de Sınıf ve tip isimleri büyük harfle başlar.
