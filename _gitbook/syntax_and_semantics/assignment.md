@@ -1,6 +1,6 @@
-# Assignment
+# Atama işlemi
 
-Assignment is done with the equal (`=`) character.
+Atama işlemi (`=`) karakteri ile biter.
 
 ```crystal
 # Assigns to a local variable
@@ -16,9 +16,9 @@ local = 1
 $global = 4
 ```
 
-Each of the above kinds of variables will be explained later on.
+Yukarıdaki değişkenler türlerinin her biri daha sonra açıklanacaktır.
 
-Some syntax sugar that contains the `=` character is available:
+`=` karakteri içeren bazı syntax sugar vardır:
 
 ```crystal
 local += 1  # same as: local = local + 1
@@ -30,7 +30,8 @@ local ||= 1 # same as: local || (local = 1)
 local &&= 1 # same as: local && (local = 1)
 ```
 
-A method invocation that ends with `=` has syntax sugar:
+# TODO
+Method çağrımlarına yarayan `=` karakteri ile biten syntax sugar'larda vardır.
 
 ```crystal
 # A setter
@@ -52,6 +53,7 @@ objects.[](2, 3)
 objects[2, 3]
 ```
 
+# TODO
 The `=` operator syntax sugar is also available to setters and indexers. Note that `||` and `&&` use the `[]?` method to check for key prescence.
 
 ```crystal
