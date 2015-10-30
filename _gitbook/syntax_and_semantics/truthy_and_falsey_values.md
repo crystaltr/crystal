@@ -1,5 +1,5 @@
-# Truthy and falsey values
+# Truthy ve falsey değerler
 
-A *truthy* value is a value that is considered true for an `if`, `unless`, `while` or `until` guard. A *falsey* value is a value that is considered false in those places.
+Bir *truthy* değer `if`, `unless`, `while` veya `until` tarafından true beklenen değer olarak düşünülebilir. *falsey* değer ise bu yerlerde ki false değeri olarak düşünülebilir.
 
-The only falsey values are `nil`, `false` and null pointers (pointers whose memory address is zero). Any other value is truthy.
+Sadece `nil`, `false` ve null pointerlar (bellek adresinde sıfır olan pointerlar) falsey değerdir. Diğer her değer truthy kabul edilir.

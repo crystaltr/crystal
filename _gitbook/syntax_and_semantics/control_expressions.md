@@ -1,3 +1,3 @@
-# Control expressions
+# Kontrol ifadeleri
 
-Before talking about control expressions we need to know what *truthy* and *falsey* values are.
+Kontrol ifadeleri hakkında konuşmaya başlamadan önce *truthy* ve *falsey* değerler hakkında bilgi sahibi olmamız gerekir.
