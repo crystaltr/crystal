@@ -1,15 +1,15 @@
-# Local variables
+# Local değişken
 
-Local variables start with lowercase letters. They are declared when you first assign them a value.
+Local değişkenler küçük harflerle başlarlar. Siz ilk kez bir değere atadığınız zaman onlar deklare edilirler.
 
 ```crystal
 name = "Crystal"
 age = 1
 ```
 
-Their type is inferred from their usage, not only from their initializer. In general, they are just value holders associated with the type that the programmer expects them to have according to their location and usage on the program.
+Onların tipleri sadece ilklenirken değil, kullanıldığında da belirlenir. Genel olarak, sadece programcının programın kullanımı ve değişkenlerin konumlarına göre beklediği değerler ile ilişkili tipleri vardır.
 
-For example, reassigning a variable with a different expression makes it have that expression’s type:
+Örneğin, bir değişkene farklı bir ifade ile tekrar atama yapıldığında o ifadenin tipine sahip olur.
 
 ```crystal
 flower = "Tulip"
@@ -19,4 +19,4 @@ flower = 1
 # At this point 'flower' is an Int32
 ```
 
-Underscores are allowed at the beginning of a variable name, but these names are reserved for the compiler, so their use is not recommended (and it also makes the code uglier to read).
+Değişken isimlerinin alttire ile başlamasına izin verilir, ama bu isimler derleyici tarafından rezerve edilir, bu yüzden kullanımı tavsiye edilmez (ve kod okunabilirliğini zorlaştırır).
