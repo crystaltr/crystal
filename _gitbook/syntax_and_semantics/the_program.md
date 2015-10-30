@@ -1,22 +1,22 @@
-# The Program
+# Program Kavramı
 
-The program is a global object in which you can define types, methods and file-local variables.
+'Program' içerisinde sınıfları, tipleri, methodları, değişkenleri tanımlayabileceğiniz genel nesnedir(global object).
 
 ```crystal
-# Defines a method in the program
-def add(x, y)
+# Program içerisinde bir method tanımlama
+def ekle(x, y)
   x + y
 end
 
-# Invokes the add method in the program
-add(1, 2) #=> 3
+# Program içerisinden ekle methodunu çağırma
+ekle(1, 2) #=> 3
 ```
 
-A method's value is the value of its last expression, there's no need for explicit `return` expressions. However, explicit `return` are possible:
+Methodun dönüş değeri(value), en son çalıştığında çıkandır ve `return` yazmamıza gerek yoktur. Ancak isterseniz `return` yazmak da mümkündür:
 
 ```crystal
-def even?(num)
-  if num % 2 == 0
+def cift?(sayi)
+  if sayi % 2 == 0
     return true
   end
 
@@ -24,19 +24,19 @@ def even?(num)
 end
 ```
 
-When invoking a method without a receiver, like `add(1, 2)`, it will be searched in the program if not found in the current type or any of its ancestors.
+Sınıf içerisinde alıcısı(receiver) olmadan bir method çağırdığınızda, ekle(1, 2) gibi, eğer miras(inherit) aldığı sınıflarda ya da kendi içerisinde bulunamazsa program içerisinde aranacaktır.
 
 ```crystal
-def add(x, y)
+def ekle(x, y)
   x + y
 end
 
 class Foo
   def bar
-    # invokes the program's add method
-    add(1, 2)
+    # ekle methodunu çağırır
+    ekle(1, 2)
 
-    # invokes Foo's baz method
+    # Foo sınıfının baz methodunu çağırır
     baz(1, 2)
   end
 
@@ -46,7 +46,8 @@ class Foo
 end
 ```
 
-If you want to invoke the program's method, even though the current type defines a method with the same name, prefix the call with `::`:
+Kendi sınıfınız içerisinde tanımlı olmasına rağmen aynı isme sahip, sınıf dışındaki methodu kullanmak istiyorsanız, methodun önüne
+`::` yazarak çağırabilirsiniz:
 
 ```crystal
 def baz(x, y)
@@ -65,20 +66,20 @@ class Foo
 end
 ```
 
-Variables declared in a program are not visible inside methods:
+Program içerisinde tanımlanmış değişkenler method içerisinden erişilemez:
 
 ```crystal
 x = 1
 
-def add(y)
+def ekle(y)
   x + y # error: undefined local variable or method 'x'
 end
 
 add(2)
 ```
 
-Parentheses in method invocations are optional:
+Method yazımlarında parantez kullanımı tercihe bağlıdır:
 
 ```crystal
-add 1, 2 # same as add(1, 2)
+ekle 1, 2 # şununla aynı: ekle(1, 2)
 ```
