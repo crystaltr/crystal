@@ -1,6 +1,6 @@
 # Splats and tuples
 
-A method can receive a variable number of arguments by using a *splat* (`*`), which can appear only once and in any position:
+Bir method *splat* (`*`) işaretini kullanarak bir değişken alır. Bu değişken bir argumanlar dizisini temsil eder. Method herhangi bir sırada ya da sayıda arguman alabilir:
 
 ```crystal
 def sum(*elements)
@@ -11,11 +11,11 @@ def sum(*elements)
   total
 end
 
-sum 1, 2, 3    #=> 6
+sum 1, 2, 3      #=> 6
 sum 1, 2, 3, 4.5 #=> 10.5
 ```
 
-The passed arguments become a [Tuple](http://crystal-lang.org/api/Tuple.html) in the method's body:
+Girilen argümanlar methodun içerisinde [Tuple](http://crystal-lang.org/api/Tuple.html) olur:
 
 ```crystal
 # elements is Tuple(Int32, Int32, Int32)

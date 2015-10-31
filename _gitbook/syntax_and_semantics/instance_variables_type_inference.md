@@ -1,129 +1,129 @@
-# Instance variables type inference
+# Örnek değişken(Instance variables) tip çıkarımı
 
-Did you notice that in all of the previous examples we never said the types of a `Person`'s `@name` and `@age`? This is because the compiler inferred them for us.
+Önceki örneklerde `Insan` sınıfının `isim` ve `yas` değişkenlerini tanımlarken hiç tiplerinden bahsetmediğimizi farkettiniz mi? Bunun sebebi derleyicinin bizim yerimize bunu yapmasıdır.
 
-When we wrote:
+Yazdığımızda:
 
 ```crystal
-class Person
-  getter name
+class Insan
+  getter isim
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@isim)
+    @yas = 0
   end
 end
 
-john = Person.new "John"
-john.name #=> "John"
-john.name.size #=> 4
+osman = Insan.new "Osman"
+osman.isim #=> "Osman"
+osman.isim.size #=> 4
 ```
 
-Since we invoked `Person.new` with a `String` argument, the compiler makes `@name` be a `String` too.
-
-If we had invoked `Person.new` with another type, `@name` would have taken a different type:
+`String` bir argumanla `Insan.new`'i çağırdığımızda, derleyici `@isim` değişkenini de `String` yapar.
+`Insan.new`'i farklı bir tiple çağırmış olsaydık, `@isim` değişkeni farklı bir tip alacaktı:
 
 ```crystal
-one = Person.new 1
-one.name #=> 1
-one.name + 2 #=> 3
+bir = Insan.new 1
+bir.isim #=> 1
+bir.isim + 2 #=> 3
 ```
 
-If you compile the previous programs with the `tool hierarchy` command, the compiler will show you a hierarchy graph with the types it inferred. In the first case:
+Önceki programları `tool hierarchy` komutu ile derleseydik, derleyici bize tip çıkarımlarıyla birlikte bir hiyerarşi grafiği gösterecekti. Ilk durumda:
 
 ```
 - class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age  : Int32
+     +- class Insan
+            @isim : String
+            @yas  : Int32
 ```
 
-In the second case:
-
-```
-- class Object
-  |
-  +- class Reference
-     |
-     +- class Person
-            @name : Int32
-            @age  : Int32
-```
-
-What happens if we create two different people, one with a `String` and one with an `Int32`? Let's try it:
-
-```crystal
-john = Person.new "John"
-one = Person.new 1
-```
-
-Invoking the compiler with the `tool hierarchy` command we get:
+İkinci durumda:
 
 ```
 - class Object
   |
   +- class Reference
      |
-     +- class Person
-            @name : (String | Int32)
-            @age  : Int32
+     +- class Insan
+            @isim : Int32
+            @yas  : Int32
 ```
 
-We can see that now `@name` has a type `(String | Int32)`, which is read as a *union* of `String` and `Int32`. The compiler made `@name` have all types assigned to it.
-
-In this case, the compiler will consider any usage of `@name` as always being either a `String` or an `Int32` and will give a compile time error if a method is not found for *both* types:
+Birisini `String`, diğerini `Int32` ile 2 farklı insan oluştursaydık ne olacaktı? Deneyelim:
 
 ```crystal
-john = Person.new "John"
-one = Person.new 1
+osman = Insan.new "Osman"
+bir = Insan.new 1
+```
+
+`tool hierarchy` komutu ile derleyiciyi çalıştırınca şunu alırız:
+```
+- class Object
+  |
+  +- class Reference
+     |
+     +- class Insan
+            @isim : (String | Int32)
+            @yas  : Int32
+```
+
+Şimdi görebiliriz ki `@isim`'in tipi `(String | Int32)`, *union* olarak okunan `String` ve `Int32` birleşimidir. Derleyici bu tiplerin tümünün atandığı `@isim` 'i yaptı.
+
+Bu durumda, derleyici `@isim` değişkenini her kullanımda `String` ya da `Int32` olduğunu varsayacaktır.Eğer `@isim` değişkeni üzerinden çağırılan bir method, verilen *tüm* tiplerde(burada String ve Int32) tanımlı değilse derleme esnasında hata(compile time error) verecektir.
+
+
+```crystal
+osman = Insan.new "osman"
+bir = Insan.new 1
 
 # Error: undefined method 'size' for Int32
-john.name.size
+osman.isim.size
 
 # Error: no overload matches 'String#+' with types Int32
-john.name + 3
+osman.isim + 3
 ```
 
-The compiler will even give an error if you first use a variable assuming it has a type and later you change that type:
+İlk kullanmın değişkenin bir tipinin olduğunu varsayıp sonra o tipi değiştirseniz de derleyici hata verecektir.
 
 ```crystal
-john = Person.new "John"
-john.name.size
-one = Person.new 1
+osman = Insan.new "osman"
+osman.isim.size
+bir = Insan.new 1
 ```
 
-Gives this compile-time error:
+Bu, compile-time hatası verir:
 
 ```
-Error in foo.cr:14: instantiating 'Person:Class#new(Int32)'
+Error in foo.cr:14: instantiating 'Insan:Class#new(Int32)'
 
-one = Person.new 1
+bir = Insan.new 1
              ^~~
 
-instantiating 'Person#initialize(Int32)'
+instantiating 'Insan#initialize(Int32)'
 
 in foo.cr:12: undefined method 'size' for Int32
 
-john.name.size
+osman.isim.size
           ^~~~~~
 ```
 
-That is, the compiler does global type inference and tells you whenever you make a mistake in the usage of a class or method. You can go ahead and put a type restriction like `def initialize(@name : String)`, but that makes the code a bit more verbose and also less generic: everything will work just fine if you create `Person` instance with types that have the same *interface* as a `String`, as long as you use a `Person`'s name like if it were a `String`.
+Derleyici global tip çıkarımı yapar ve ne zaman bir sınıf ya da methodu yanlış kullanırsanız size söyler. Devam edebilir ve şu şekilde `def initialize(@isim : String)` bir tip kısıtlaması koyabilirsiniz ama bu yazılan kodunu biraz gereksizleştirir ve jenerikliğini azaltır: eğer `Insan` instance'ını `String` ile oluşturursanız, `String` *interface* 'iyle aynı şeye sahip olursunuz, `Insan`'ın isim değişkenini `String` varmış gibi kullanabilirsiniz, bu şekilde idare eder bir kod yazmış olursunuz.
 
-If you do want to have different `Person` types, one with `@name` being an `Int32` and one with `@name` being a `String`, you must use [generics](generics.html).
+`@isim` değişkenlerinden birisi `Int32` bir diğeri `String` olan 2 farklı `Insan` tipine ihtiyacınız varsa [generics](generics.html)'leri kullanmalısınız.
 
-## Nilable instance variables
+## Nil olabilen örnek değişkenler(Nilable)
 
-If an instance variable is not assigned in all of the `initialize` defined in a class, it will be considered as also having the type `Nil`:
+`initialize` tanımlı bir sınıf içerisindeyken atanma yapılmamış bir instance değişken, derleyici tarafından `Nil` tipinde olduğu varsayılacaktır.Bir instance değişkeniniz varsa ona bir başlangıç değeri atayın:
+
 
 ```crystal
-class Person
-  getter name
+class Insan
+  getter isim
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@isim)
+    @yas = 0
   end
 
   def address
@@ -134,8 +134,8 @@ class Person
   end
 end
 
-john = Person.new "John"
-john.address = "Argentina"
+osman = Insan.new "osman"
+osman.address = "Argentina"
 ```
 
 The hierarchy graph now shows:
@@ -145,50 +145,50 @@ The hierarchy graph now shows:
   |
   +- class Reference
      |
-     +- class Person
-            @name : String
-            @age : Int32
+     +- class Insan
+            @isim : String
+            @yas : Int32
             @address : String?
 ```
 
-You can see `@address` is `String?`, which is a short form notation of `String | Nil`. This means that the following gives a compile time error:
+ `@address` : `String?` ifadesinde `String | Nil` gösteriminin kısaltılmış halini görebilirsiniz. Bunun anlamı aşağıda compile time hatası alacağımızdır:
 
 ```crystal
 # Error: undefined method 'size' for Nil
-john.address.size
+osman.address.size
 ```
 
-To deal with `Nil`, and generally with union types, you have several options: use an [if var](if_var.html), [if var.is_a?](if_varis_a.html), [case](case.html) and [is_a?](is_a.html).
+`Nil` ve genel olarak union(birleşik) tiplerle başa çıkmak için, bir kaç yöntem vardır: [if var](if_var.html), [if var.is_a?](if_varis_a.html), [case](case.html) ve [is_a?](is_a.html).
 
 ## Catch-all initialization
 
-Instance variables can also be initialized outside `initialize` methods:
+Örnek değişkenler ayrıca `initialize` method dışarısında da initialize edilebilirler(başlatılabilirler):
 
 ```crystal
-class Person
-  @age = 0
+class Insan
+  @yas = 0
 
-  def initialize(@name)
+  def initialize(@isim)
   end
 end
 ```
 
-This will initialize `@age` to zero in every constructor. This is useful to avoid duplication, but also to avoid the `Nil` type when reopening a class and adding instance variables to it.
+Her yeni örnek oluşturlduğunda `@yas` sıfıra atanmış olarak gelecektir. Bu kod tekrarından, bir sınıfı tekrar açıp ve bir instance değişken eklediğinizde `Nil` tipinden kaçınmak için kullanışlı olacaktır.
 
-## Specifying the types of instance variables
+## Instance değişkenlerin tipini belirleme
 
-In certain cases you want to tell the compiler to fix the type of an instance variable. You can do this with `::`:
+Belli durumlarda derleyiciye instance değişkenin tipini düzeltmesini söylemek isteyebilirsiniz. Bunu `::` ile yapabilirsiniz:
 
 ```crystal
-class Person
-  @age :: Int32
+class Insan
+  @yas :: Int32
 
-  def initialize(@name)
-    @age = 0
+  def initialize(@isim)
+    @yas = 0
   end
 end
 ```
 
-In this case, if we assign something that's not an `Int32` to `@age`, a compile-time error will be issued at the assignment location.
+Bu örnekte, eğer `@yas` değişkenine `Int32` dışında bir tipte atama yaparsak, atamanın yapıldığı yerde compile-time hatası alacağız.
 
-Note that you still have to initialize the instance variables, either with a catch-all initializer or within an `initialize` method: there are no "default" values for types.
+Hala bir instance değişkeni initialize etmek zorundayız. Ya catch-all initializer ile ya da `initialize` method içerisinde: tipler için "varsayılan"(default) değerler yok.
