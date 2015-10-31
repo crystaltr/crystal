@@ -1,46 +1,46 @@
 # Hash
 
-A [Hash](http://crystal-lang.org/api/Hash.html) representing a mapping of keys of a type `K` to values of a type `V`. It is typically created with a hash literal:
+Bir [Hash](http://crystal-lang.org/api/Hash.html) `A` tipindeki anahtarların `D` tipindeki değerler ile eşleştirilmesini gösterir. Genellikle şöyle tanımlanır:
 
 ```crystal
 {1 => 2, 3 => 4}     # Hash(Int32, Int32)
 {1 => 2, 'a' => 3}   # Hash(Int32 | Char, Int32)
 ```
 
-A Hash can have mixed types, both for the keys and values, meaning `K`/`V` will be union types, but these are determined when the hash is created, either by specifying `K` and `V` or by using a hash literal. In the latter case, `K` will be set to the union of the hash literal keys, and `V` will be set to the union of the hash literal values.
+Bir Hash, hem anahtarlar hem değerler için karışık tipler içerebilir, yani 'A'/'D' tiplerin birleşimi olur ama bunlar hash tanımlandığında ya 'A' ve 'D' tiplerini belirterek ya da bir hash değişmezi kullanılarak belirlenir. Son durumda 'A'  ve 'D' hash'in anahtar ve değerlerinin tiplerinin birrleşimine eşit olurlar.
 
-When creating an empty hash you must always specify `K` and `V`:
+Boş bir hash tanımlarken 'A' ve 'D'yi belirtmek zorundasınız:
 
 ```crystal
 {} of Int32 => Int32 # same as Hash(Int32, Int32).new
 {}                   # syntax error
 ```
 
-## Symbol keys
+## Symbol anahtarlar
 
-A special notation allows creating hashes with symbol keys:
+Özel bir gösterim ile symbol anahtarlı hash'ler tanımlayabilirsiniz:
 
 ```crystal
 {key1: 'a', key2: 'b'} # Hash(Symbol, Char)
 ```
 
-## String keys
+## String anahtarlar
 
-A special notation allows creating hashes with string keys:
+Özel bir gösterim ile string anahtarlı hash'ler tanımlayabilirsiniz:
 
 ```crystal
 {"key1": 'a', "key2": 'b'} # Hash(String, Char)
 ```
 
-## Hash-like types
+## Hash'e benzeyen tipler
 
-You can use a special hash literal syntax with other types too, as long as they define an argless `new` method and a `[]=` method:
+Özel array sözdizimini argümansız 'new' ve '[]=' metodlarını destekleyen başka tiplerle de kullanabilirsiniz:
 
 ```crystal
 MyType{"foo": "bar"}
 ```
 
-If `MyType` is not generic, the above is equivalent to this:
+Eğer `MyType` <<generic>> değil ise, yukarıdaki şuna eşit olacaktır:
 
 ```crystal
 tmp = MyType.new
@@ -48,7 +48,7 @@ tmp["foo"] = "bar"
 tmp
 ```
 
-If `MyType` is generic, the above is equivalent to this:
+Eğer `MyType` <<generic>> ise, yukarıdaki şuna eşit olacaktır:
 
 ```crystal
 tmp = MyType(typeof("foo"), typeof("bar")).new
@@ -56,7 +56,7 @@ tmp["foo"] = "bar"
 tmp
 ```
 
-In the case of a generic type, the type arguments can be specified too:
+<<Generic>> tip durumunda, tip argümanları da belirtilebilir:
 
 ```crystal
 MyType(String, String) {"foo": "bar"}

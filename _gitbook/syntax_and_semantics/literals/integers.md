@@ -1,13 +1,13 @@
-# Integers
+# Integer'lar
 
-There are four signed integer types: [Int8](http://crystal-lang.org/api/Int8.html), [Int16](http://crystal-lang.org/api/Int16.html), [Int32](http://crystal-lang.org/api/Int32.html) and [Int64](http://crystal-lang.org/api/Int64.html), being able to represent numbers of 8, 16, 32 and 64 bits respectively.
+4 işaretli integer tipi var: [Int8](http://crystal-lang.org/api/Int8.html), [Int16](http://crystal-lang.org/api/Int16.html), [Int32](http://crystal-lang.org/api/Int32.html) ve [Int64](http://crystal-lang.org/api/Int64.html), sırasıyla 8, 16, 32 ve 64 bit'i gösterirler.
 
-There are four unsigned integer types: [UInt8](http://crystal-lang.org/api/UInt8.html), [UInt16](http://crystal-lang.org/api/UInt16.html), [UInt32](http://crystal-lang.org/api/UInt32.html) and [UInt64](http://crystal-lang.org/api/UInt64.html).
+4 işaretsiz integer tipi var: [UInt8](http://crystal-lang.org/api/UInt8.html), [UInt16](http://crystal-lang.org/api/UInt16.html), [UInt32](http://crystal-lang.org/api/UInt32.html) ve [UInt64](http://crystal-lang.org/api/UInt64.html).
 
-An integer literal is an optional `+` or `-` sign, followed by
-a sequence of digits and underscores, optionally followed by a suffix.
-If no suffix is present, the literal's type is the lowest between `Int32`, `Int64` and `UInt64`
-in which the number fits:
+Bir integer '+' ya da '-' işaretini (opsiyonel), takip eden bir dizi rakam ve alttirelere
+eklenen bir son ek ile (opsiyonel) gösterilir.
+Eğer son ek yoksa, değişmezin tipi 'Int32', 'Int64' ve 'UInt64' tiplerinden,
+sayının uyduğu en düşük tip olarak belirlenir.
 
 ```crystal
 1      # Int32
@@ -29,27 +29,27 @@ in which the number fits:
 9223372036854775808 # UInt64
 ```
 
-The underscore `_` before the suffix is optional.
+Son ekten önceki alttire '_' isteğe bağlıdır.
 
-Underscores can be used to make some numbers more readable:
+Alttireler sayıları daha okunabilir yapmak için kullanılabilir.
 
 ```crystal
-1_000_000 # better than 1000000
+1_000_000 # 1000000'den daha iyi
 ```
 
-Binary numbers start with `0b`:
+İkili sayılar `0b` ile başlar:
 
 ```crystal
 0b1101 # == 13
 ```
 
-Octal numbers start with a `0o`:
+Sekizli sayılar `0o` ile başlar:
 
 ```crystal
 0o123 # == 83
 ```
 
-Hexadecimal numbers start with `0x`:
+Onaltılı sayılar `0x` ile başlar:
 
 ```crystal
 0xFE012D # == 16646445

@@ -1,14 +1,14 @@
 # String
 
-A [String](http://crystal-lang.org/api/String.html) represents an immutable sequence of UTF-8 characters.
+Bir [String](http://crystal-lang.org/api/String.html) değişmez bir dizi UTF-8 karakterini belirtir.
 
-A String is typically created with a string literal, enclosing UTF-8 characters in double quotes:
+Bir String, genellikle bir dizi UTF-8 karakterini çevreleyen çift tırnaklarla tanımlanır.
 
 ```crystal
 "hello world"
 ```
 
-A backslash can be used to denote some characters inside the string:
+String içindeki bazı karakterleri belirtmek için ters bölü işareti kullanılabilir:
 
 ```crystal
 "\"" # double quote
@@ -21,7 +21,7 @@ A backslash can be used to denote some characters inside the string:
 "\v" # vertical tab
 ```
 
-You can use a backslash followed by at most three digits to denote a code point written in octal:
+Ters bölü işaretini bir code point belirtmek için, en fazla 3 hane kaplayan sekizli sayılarla kullanabilirsiniz:
 
 ```crystal
 "\101" # == "A"
@@ -30,29 +30,29 @@ You can use a backslash followed by at most three digits to denote a code point 
 "\1"   # string with one character with code point 1
 ```
 
-You can use a backslash followed by an *u* and four hexadecimal characters to denote a unicode codepoint written:
+Ters bölü işaretini bir  unicode codepoint belirtmek için,  bir *u* ardından 4 onaltılı karakter ile kullanabilirsiniz:
 
 ```crystal
 "\u0041" # == "A"
 ```
 
-Or you can use curly braces and specify up to six hexadecimal numbers (0 to 10FFFF):
+Ya da süslü parantezleri kullanıp 6 haneli onaltılı sayılara kadar belirtebilirsiniz (0'dan 10FFFF 'ye kadar):
 
 ```crystal
 "\u{41}"    # == "A"
 "\u{1F52E}" # == "🔮"
 ```
 
-A string can span multiple lines:
+Bir string birden fazla satırı kaplayabilir
 
 ```crystal
 "hello
       world" # same as "hello\n      world"
 ```
 
-Note that in the above example trailing and leading spaces, as well as newlines,
-end up in the resulting string. To avoid this, you can split a string into multiple lines
-by joining multiple literals with a backslash:
+Yukarıdaki örnekte boşlukların ve yeni satırların sonuçlanan string'te bittiğini dikkate alın.
+Bundan kaçınmak içinbir string'i birden fazla satıra ters bölü işaretlerini kullanarak
+bölebilirsiniz:
 
 ```crystal
 "hello " \
@@ -60,7 +60,7 @@ by joining multiple literals with a backslash:
 "no newlines" # same as "hello world, no newlines"
 ```
 
-Alternatively, a backlash followed by a newline can be inserted inside the string literal:
+Alternatif olarak ters bölü işaretinin ardından eklenecek bir yeni satır string değişmezine eklenebilir:
 
 ```crystal
 "hello \
@@ -68,28 +68,28 @@ Alternatively, a backlash followed by a newline can be inserted inside the strin
      no newlines" # same as "hello world, no newlines"
 ```
 
-In this case, leading whitespace is not included in the resulting string.
+Bu durumda, önde gelen boşluk sonuç string'ine dahil edilmez.
 
-If you need to write a string that has many double quotes, parenthesis, or similar
-characters, you can use alternative literals:
+Eğer çift tırnak, parantez ya da buna benzer karakterler içeren bir string yazmak istiyorsanız,
+alternatif değişmezleri kullanabilirsiniz:
 
 ```crystal
-# Supports double quotes and nested parenthesis
+# Çift tırnakları ve içiçe parantezleri destekler
 %(hello ("world")) # same as "hello (\"world\")"
 
-# Supports double quotes and nested brackets
+# Çift tırnakları ve içiçe köşeli parantezleri destekler
 %[hello ["world"]] # same as "hello [\"world\"]"
 
-# Supports double quotes and nested curlies
+# Çift tırnakları ve içiçe süslü parantezleri destekler
 %{hello {"world"}} # same as "hello {\"world\"}"
 
-# Supports double quotes and nested angles
+# Çift tırnakları ve içiçe '<>' işaretlerini destekler
 %<hello <"world">> # same as "hello <\"world\">"
 ```
 
-## Interpolation
+## Interpolasyon
 
-To create a String with embedded expressions, you can use string interpolation:
+Gömülü içerikler ile bir String yaratmak için string interpolasyonunu kullanabilirsiniz:
 
 ```crystal
 a = 1
@@ -97,4 +97,4 @@ b = 2
 "sum = #{a + b}"        # "sum = 3"
 ```
 
-This ends up invoking `Object#to_s(IO)` on each expression enclosed by `#{...}`.
+Bu `#{...}` ile çevrelenen her içerik için `Object#to_s(IO)`çağırarak sonlanır.

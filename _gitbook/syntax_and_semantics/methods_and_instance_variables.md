@@ -92,4 +92,4 @@ insan.yaslandir
 insan.yas #=> 3
 ```
 
-Argüman ve parantezler olmadan, `previous_def` methodmuş gibi methodun ayni argümanlarını alır. Eğer argüman verilirse onları da alır.
+Argüman ve parantezler olmadan, `previous_def` methodmuş gibi methodun aynı argümanlarını alır. Eğer argüman verilirse onları da alır.

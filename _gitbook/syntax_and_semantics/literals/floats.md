@@ -1,14 +1,13 @@
-# Floats
+# Float'lar
 
-There are two floating point types, [Float32](http://crystal-lang.org/api/Float32.html) and [Float64](http://crystal-lang.org/api/Float64.html),
-which correspond to the [binary32](http://en.wikipedia.org/wiki/Single_precision_floating-point_format)
-and [binary64](http://en.wikipedia.org/wiki/Double_precision_floating-point_format)
-types defined by IEEE.
+2 kayan noktalı tip var, [Float32](http://crystal-lang.org/api/Float32.html) ve [Float64](http://crystal-lang.org/api/Float64.html),
+bunlar IEEE tarafından tanımlanmış [binary32](http://en.wikipedia.org/wiki/Single_precision_floating-point_format)
+ve [binary64](http://en.wikipedia.org/wiki/Double_precision_floating-point_format) formatlarına karşılık gelir.
 
-A floating point literal is an optional `+` or `-` sign, followed by
-a sequence of numbers or underscores, followed by a dot,
-followed by numbers or underscores, followed by an optional exponent suffix,
-followed by an optional type suffix. If no suffix is present, the literal's type is `Float64`.
+Bir float değişmezi: `+` ya da `-` işaretini (opsiyonel), takip eden
+bir dizi rakam ya da alttire ve bunları takip eden bir nokta ve arkasına
+rakamlar ya da alttireler ve bir son ek ile gösterilebilir.
+Eğer son ek yoksa değişmezin tipi 'Float64' olur.
 
 ```crystal
 1.0      # Float64
@@ -23,10 +22,10 @@ followed by an optional type suffix. If no suffix is present, the literal's type
 -0.5     # Float64
 ```
 
-The underscore `_` before the suffix is optional.
+Son ekten önceki alttire '_' isteğe bağlıdır.
 
-Underscores can be used to make some numbers more readable:
+Alttireler sayıları daha okunabilir yapmak için kullanılabilir.
 
 ```crystal
-1_000_000.111_111 # better than 1000000.111111
+1_000_000.111_111 # 1000000.111111 'den daha iyi
 ```
