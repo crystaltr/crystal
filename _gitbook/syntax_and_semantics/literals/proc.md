@@ -1,42 +1,42 @@
 # Proc
 
-A [Proc](http://crystal-lang.org/api/Proc.html) represents a function pointer with an optional context (the closure data). It is typically created with a proc literal:
+Bir [Proc](http://crystal-lang.org/api/Proc.html) bir fonksiyon işaretçisine (ve opsiyonel içeriğine (kaspam verisi)) karşılık gelir. Genellikle şöyle tanımlanır:
 
 ```crystal
-# A proc without arguments
+# Argümansız bir proc
 ->{ 1 } # Proc(Int32)
 
-# A proc with one argument
+# Tek argümanlı proc
 ->(x : Int32) { x.to_s } # Proc(Int32, String)
 
-# A proc with two arguments:
+# İki argümanlı proc:
 ->(x : Int32, y : Int32) { x + y } # Proc(Int32, Int32, Int32)
 ```
 
-The types of the arguments are mandatory, except when directly sending a proc literal to a lib `fun` in C bindings.
+Bir proc değişmezini C bağlayıcılarında direk olarak 'fun' kütüphanesine göndermedikçe, argüman tipleri zorunludur.
 
-The return type is inferred from the proc's body.
+Dönüş değeri Proc'un  gövdesinden türer.
 
-A special `new` method is provided too:
+Özel `new` metodu da desteklenir:
 
 ```crystal
 Proc(Int32, String).new { |x| x.to_s } # Proc(Int32, String)
 ```
 
-This form allows you to specify the return type and to check it against the proc's body.
+Bu biçim size dönüş tipini belirleme ve Proc'un gövdesiyle kontrol etme imkanı veriyor.
 
-## Invoking
+## Çağırmak
 
-To invoke a Proc, you invoke the `call` method on it. The number of arguments must match the proc's type:
+Bir Proc'u çağırmak için, üzerinde `call` metodunu çağırın. Argüman sayısı Proc'un tipiyle eşleşmeli:
 
 ```crystal
 proc = ->(x : Int32, y : Int32) { x + y }
 proc.call(1, 2) #=> 3
 ```
 
-## From methods
+## Metodlardan
 
-A Proc can be created from an existing method:
+Bir Proc halihazırda var olan başka bir metodtan yaratılabilir:
 
 ```crystal
 def one
@@ -47,7 +47,7 @@ proc = ->one
 proc.call #=> 1
 ```
 
-If the method has arguments, you must specify their types:
+Eğer metodun argümanları varsa, tiplerini belirtmelisiniz:
 
 ```crystal
 def plus_one(x)
@@ -58,7 +58,7 @@ proc = ->plus_one(Int32)
 proc.call(41) #=> 42
 ```
 
-A proc can optionally specify a receiver:
+Bir Proc isteğe bağlı olarak bir alıcı belirleyenilir:
 
 ```crystal
 str = "hello"
