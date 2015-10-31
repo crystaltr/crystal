@@ -1,16 +1,17 @@
-# Return types
+# Dönüş Tipleri(Return types)
 
 A method's return type is always inferred by the compiler. However, you might want to specify it for two reasons:
+Bir methodun dönüş tipi daima derleyici tarafından çıkarılır. Ancak, belki iki sebepten dolayı siz isteyebilirsiniz:
 
-1. To make sure that the method returns the type that you want
-2. To make it appear in documentation comments
+1. Methodun döndüğü tipin sizin istediğiniz olmasından emin olmak için
+2. Belgeleme yorumlarında görünür kılmak için
 
-For example:
+Örneğin:
 
 ```crystal
-def some_method : String
-  "hello"
+def methodum : String
+  "selam"
 end
 ```
 
-The return type follows the [type grammar](type_grammar.html).
+Dönüş tipleri [type grammar](type_grammar.html)'de devam etmekte.
