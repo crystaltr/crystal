@@ -27,7 +27,7 @@ bir.isim #=> 1
 bir.isim + 2 #=> 3
 ```
 
-Önceki programları `tool hierarchy` komutu ile derleseydik, derleyici bize tip çıkarımlarıyla birlikte bir hiyerarşi grafiği gösterecekti. Ilk durumda:
+Önceki programları `tool hierarchy` komutu ile derleseydik, derleyici bize tip çıkarımlarıyla birlikte bir hiyerarşi grafiği gösterecekti. İlk durumda:
 
 ```
 - class Object
@@ -69,9 +69,9 @@ bir = Insan.new 1
             @yas  : Int32
 ```
 
-Şimdi görebiliriz ki `@isim`'in tipi `(String | Int32)`, *union* olarak okunan `String` ve `Int32` birleşimidir. Derleyici bu tiplerin tümünün atandığı `@isim` 'i yaptı.
+Şimdi görebiliriz ki `@isim`'in tipi `(String | Int32)`, *union* olarak okunan `String` ve `Int32` birleşimidir. Derleyici bu tiplerin tümünün atandığı `@isim` 'i üretti.
 
-Bu durumda, derleyici `@isim` değişkenini her kullanımda `String` ya da `Int32` olduğunu varsayacaktır.Eğer `@isim` değişkeni üzerinden çağırılan bir method, verilen *tüm* tiplerde(burada String ve Int32) tanımlı değilse derleme esnasında hata(compile time error) verecektir.
+Bu durumda, derleyici `@isim` değişkenini her kullanımda `String` ya da `Int32` olduğunu varsayacaktır. Eğer `@isim` değişkeni üzerinden çağırılan bir method, verilen *tüm* tiplerde(burada String ve Int32) tanımlı değilse derleme esnasında hata(compile time error) verecektir.
 
 
 ```crystal
@@ -85,7 +85,7 @@ osman.isim.size
 osman.isim + 3
 ```
 
-İlk kullanmın değişkenin bir tipinin olduğunu varsayıp sonra o tipi değiştirseniz de derleyici hata verecektir.
+İlk kullanımında değişkenin bir tipinin olduğunu varsayıp sonra o tipi değiştirseniz de derleyici hata verecektir.
 
 ```crystal
 osman = Insan.new "osman"
@@ -109,13 +109,13 @@ osman.isim.size
           ^~~~~~
 ```
 
-Derleyici global tip çıkarımı yapar ve ne zaman bir sınıf ya da methodu yanlış kullanırsanız size söyler. Devam edebilir ve şu şekilde `def initialize(@isim : String)` bir tip kısıtlaması koyabilirsiniz ama bu yazılan kodunu biraz gereksizleştirir ve jenerikliğini azaltır: eğer `Insan` instance'ını `String` ile oluşturursanız, `String` *interface* 'iyle aynı şeye sahip olursunuz, `Insan`'ın isim değişkenini `String` varmış gibi kullanabilirsiniz, bu şekilde idare eder bir kod yazmış olursunuz.
+Derleyici global tip çıkarımı yapar ve ne zaman bir sınıf ya da methodu yanlış kullanırsanız size söyler. Devam edebilir ve şu şekilde `def initialize(@isim : String)` bir tip kısıtlaması koyabilirsiniz ama bu yazılan kodu biraz gereksizleştirir ve jenerikliğini azaltır: eğer `Insan` instance'ını `String` ile oluşturursanız, `String` *interface* 'iyle aynı şeye sahip olursunuz, `Insan`'ın isim değişkenini `String` varmış gibi kullanabilirsiniz, bu şekilde idare eder bir kod yazmış olursunuz.
 
 `@isim` değişkenlerinden birisi `Int32` bir diğeri `String` olan 2 farklı `Insan` tipine ihtiyacınız varsa [generics](generics.html)'leri kullanmalısınız.
 
 ## Nil olabilen örnek değişkenler(Nilable)
 
-`initialize` tanımlı bir sınıf içerisindeyken atanma yapılmamış bir instance değişken, derleyici tarafından `Nil` tipinde olduğu varsayılacaktır.Bir instance değişkeniniz varsa ona bir başlangıç değeri atayın:
+`initialize` tanımlı bir sınıf içerisindeyken atanma yapılmamış bir instance değişkenin tipi derleyici tarafından `Nil` olarak varsayılacaktır. Bir instance değişkeniniz varsa ona bir başlangıç değeri atayın:
 
 
 ```crystal
@@ -138,7 +138,7 @@ osman = Insan.new "osman"
 osman.address = "Argentina"
 ```
 
-The hierarchy graph now shows:
+Şimdi hiyerarşi grafiği şöyle gözükür:
 
 ```
 - class Object
@@ -151,7 +151,7 @@ The hierarchy graph now shows:
             @address : String?
 ```
 
- `@address` : `String?` ifadesinde `String | Nil` gösteriminin kısaltılmış halini görebilirsiniz. Bunun anlamı aşağıda compile time hatası alacağımızdır:
+`@address` : `String?` ifadesinde `String | Nil` gösteriminin kısaltılmış halini görebilirsiniz. Bunun anlamı aşağıdaki gibi bir compile time hatası alacağımızdır:
 
 ```crystal
 # Error: undefined method 'size' for Nil
@@ -173,7 +173,7 @@ class Insan
 end
 ```
 
-Her yeni örnek oluşturlduğunda `@yas` sıfıra atanmış olarak gelecektir. Bu kod tekrarından, bir sınıfı tekrar açıp ve bir instance değişken eklediğinizde `Nil` tipinden kaçınmak için kullanışlı olacaktır.
+Her yeni örnek oluşturulduğunda `@yas` sıfıra atanmış olarak gelecektir. Bu kod tekrarından, bir sınıfı tekrar açıp ve bir instance değişken eklediğinizde `Nil` tipinden kaçınmak için kullanışlı olacaktır.
 
 ## Instance değişkenlerin tipini belirleme
 
