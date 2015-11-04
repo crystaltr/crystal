@@ -84,7 +84,7 @@ class Insan
 end
 ```
 
-Üretilen belgelemede dummy `&block` methodu daima göze görünür olacaktır, siz onu yazsanız da yazmasanız da.
+Üretilen belgelemede dummy `&block` methodu daima görünür olacaktır, siz onu yazsanız da yazmasanız da.
 
 Eşit sayıda argüman verildiğinde, derleyici sıralama yapmaya çalışırken daha az kısıtlanmış olan methodu en sona bırakır:
 

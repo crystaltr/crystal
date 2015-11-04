@@ -38,6 +38,6 @@ some_method 10, z: 10 # x = 10, y = 1, z = 10, w = 3
 some_method 10, w: 1, y: 2, z: 3 # x = 10, y = 2, z = 3, w = 1
 ```
 
-Yukarıdaki örnekte `x` argümanini paslarken `x: 10` şeklinde kullanamayız, çünkü varsayılan bir değeri bulunmamakta.
+Yukarıdaki örnekte `x` argümanını paslarken `x: 10` şeklinde kullanamayız, çünkü varsayılan bir değeri bulunmamakta.
 
 Bu arada, default argümanlar ve isimli argümanlar birbirleriyle ilişkilidir: default argüman tanımladığınız zaman ayrıca çağırdığınız methoda da isimlerini kullanmaya izin veriyorsunuz. İsim seçimi yaparken akıllıca davranın ve iyi isimler seçin.
