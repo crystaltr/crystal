@@ -1,6 +1,7 @@
-# Default and named arguments
+# Varsayılan(default) ve isimli argümanlar(named arguments)
 
-A method can specify default values for the last arguments:
+Bir method son agrümanları için varsayılan değerler belirtebilir:
+
 
 ```crystal
 class Person
@@ -19,13 +20,13 @@ john.become_older 2
 john.age #=> 3
 ```
 
-To specify the values of arguments that have default values you can also use their names in the invocation:
+Ayrıca methodu çağırırken de varsayılan argümanı kullanarak farklı değer atayabilirsiniz:
 
 ```crystal
 john.become_older by: 5
 ```
 
-When the method has many default arguments the order of the names in the invocation doesn't matter, and some names can be omitted:
+Methodun bir çok varsayılan argümanı olduğunda, methodu çağırma sırasında tanımlanan argümanların sırası önemsizdir ve bazı argümanları isterseniz atlayabilirsiniz:
 
 ```crystal
 def some_method(x, y = 1, z = 2, w = 3)
@@ -37,6 +38,6 @@ some_method 10, z: 10 # x = 10, y = 1, z = 10, w = 3
 some_method 10, w: 1, y: 2, z: 3 # x = 10, y = 2, z = 3, w = 1
 ```
 
-Note that in the above example you can't use `x`'s name, as it doesn't have a default value.
+Yukarıdaki örnekte `x` argümanını paslarken `x: 10` şeklinde kullanamayız, çünkü varsayılan bir değeri bulunmamakta.
 
-In this way, default arguments and named arguments are related to each other: when you specify default arguments you are also allowing the caller to use their names. Be wise and choose good names.
+Bu arada, default argümanlar ve isimli argümanlar birbirleriyle ilişkilidir: default argüman tanımladığınız zaman ayrıca çağırdığınız methoda da isimlerini kullanmaya izin veriyorsunuz. İsim seçimi yaparken akıllıca davranın ve iyi isimler seçin.
