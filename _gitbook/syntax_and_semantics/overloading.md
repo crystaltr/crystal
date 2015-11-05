@@ -28,7 +28,7 @@ Bunun anlamı, farklı sayıda argüman alan, farklı işlevleri olan methodlar�
 *method overloading* işleminin belirli kriterleri vardır:
 
 * Argüman sayıları
-* Argumanlara tip kısıtlaması uygulanmalı
+* Argümanlara tip kısıtlaması uygulanmalı
 * Bir method ya [blok](blocks_and_procs.html) alır ya da almaz
 
 Örneğin, 4 tane `yaslandir` methodu tanımlayabiliriz:
@@ -74,7 +74,7 @@ end
 insan.yas #=> 28
 ```
 
-Yield içeren methoda dikkat edersek, derleyici bunu anladı çünkü `yield` ifadesi kullandık. Bunu daha açıklayıcı yapmak için, methoda argüman olarak kukla(dummy) bir `&block` ekleyebiliriz.
+Yield içeren methoda dikkat edersek, derleyici bunu anladı çünkü `yield` ifadesi kullandık. Bunu daha açıklayıcı yapmak için, methoda argüman olarak sahte(dummy) bir `&block` ekleyebiliriz.
 
 ```crystal
 class Insan
