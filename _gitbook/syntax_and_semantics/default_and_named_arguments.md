@@ -1,6 +1,6 @@
 # Varsayılan(default) ve isimli argümanlar(named arguments)
 
-Bir method son agrümanları için varsayılan değerler belirtebilir:
+Bir method son argümanları için varsayılan değerler belirtebilir:
 
 
 ```crystal
