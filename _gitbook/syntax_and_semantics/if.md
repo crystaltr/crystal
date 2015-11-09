@@ -1,6 +1,6 @@
 # if
 
-An `if` evaluates the `then` branch if its condition is *truthy*, and evaluates the `else` branch, if there’s any, otherwise.
+`if` içindeki koşul doğru ise `then` bloğunu değerlendirir, aksi halde `else` bloğunu değerlendirir.
 
 ```crystal
 a = 1
@@ -18,7 +18,7 @@ end
 b #=> 20
 ```
 
-To write a chain of if-else-if you use `elsif`:
+if-else-if basamak yapısı için `elsif` kullanabilirsiniz:
 
 ```crystal
 if some_condition
@@ -30,7 +30,7 @@ else
 end
 ```
 
-After an `if`, a variable’s type depends on the type of the expressions used in both branches.
+`if` kullandıktan sonra, değişkenin tipi her iki blokda da kullanılan ifadelerin tipine bağlıdır. 
 
 ```crystal
 a = 1
@@ -60,9 +60,10 @@ end
 # d :: Int32 | Nil
 ```
 
-Note that if a variable is declared inside one of the branches but not in the other one, at the end of the `if` it will also contain the `Nil` type.
+Bir değişken bir blokda tanımlanıp, diğerinde tanımlanmadıysa, if bloğunun sonunda `Nil` tipini de içerir.
 
-Inside an `if`'s branch the type of a variable is the one it got assigned in that branch, or the one that it had before the branch if it was not reassigned:
+`if` bloğunun içindeki değişkenin tipi bloğun içinde atama yapılan değerin tipidir, eğer atama yapılmadıysa bloktan önceki değişkenin tipini alır:
+
 
 ```crystal
 a = 1
@@ -74,9 +75,9 @@ end
 # a :: String | Int32
 ```
 
-That is, a variable’s type is the type of the last expression(s) assigned to it.
+Burada, bir değişkenin tipi atanan son değerin tipidir.
 
-If one of the branches never reaches past the end of an `if`, like in the case of a `return`, `next`, `break` or `raise`, that type is not considered at the end of the `if`:
+Eğer `return`, `next`, `break` ya da `raise` durumlarında olduğu gibi bloklardan biri tamamlanmıyorsa, değişkenin tipi o bloğa girmemiş gibi düşünülmelidir.
 
 ```crystal
 if some_condition
