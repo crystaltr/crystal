@@ -1,6 +1,6 @@
-# As a suffix
+# Son ek olarak kullanımı
 
-An `if` can be written as an expression’s suffix:
+`if` ifadenin sonunda da yazılabilir:
 
 ```crystal
 a = 2 if some_condition
@@ -11,4 +11,4 @@ if some_condition
 end
 ```
 
-This sometimes leads to code that is more natural to read.
+Bu kodun doğal olarak okunmasına olanak sağlar.
