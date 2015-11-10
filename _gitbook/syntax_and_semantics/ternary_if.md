@@ -1,7 +1,6 @@
-# Üçlü if
+# Ternary if (Üçlü if)
 
-The ternary `if` allows writing an `if` in a shorter way:
-Üçlü `if`, kısa şekilde `if` yazımına olanak sağlar.
+Ternary `if`, kısa şekilde `if` yazımına olanak sağlar.
 
 ```crystal
 a = 1 > 2 ? 3 : 4
