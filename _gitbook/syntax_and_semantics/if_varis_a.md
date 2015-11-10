@@ -1,6 +1,6 @@
 # if var.is_a?(...)
 
-Bir `if` durumu bir `is_a?` testi ise, bir değişkenin tipi `then` bloğunda bu tür ile sınırlı olması garanti edilir.
+`if` koşulu bir `is_a?` testi ise, bir değişkenin tipi `then` bloğunda bu tip ile sınırlı olması garanti edilir.
 
 ```crystal
 if a.is_a?(String)
@@ -11,7 +11,8 @@ if b.is_a?(Number)
   # Buarada b bir Number dır
 end
 ```
-Ayrıca, `else` bloğundaki değişkenin tipi bu tür ile sınırlı olmadığı garanti edilir.
+
+Ayrıca, `else` bloğundaki değişkenin tipi bu tipte olmadığı garanti edilir.
 
 ```crystal
 a = some_condition ? 1 : "hello"
@@ -34,8 +35,7 @@ if a.is_a?(String) && b.is_a?(Number)
 end
 ```
 
-The above **doesn’t** work with instance variables, class variables or global variables. To work with these, first assign them to a variable:
-Yukarıdaki örnek, static olmayan değişkenleri, sınıf değişkenleri ya da global değişkenler kullanıldğında **çalışmaz**. Eğer bunları kullanmak istiyorsanız farklı bir değişkene atamalısınız.
+Yukarıdaki örnek, static olmayan değişkenleri, sınıf değişkenleri ya da global değişkenler kullanıldığında **çalışmaz**. Eğer bunları kullanmak istiyorsanız farklı bir değişkene atamalısınız:
 
 ```crystal
 if @a.is_a?(String)
