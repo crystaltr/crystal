@@ -1,4 +1,4 @@
-# Değer olarak kullanımı
+# İfade olarak kullanımı
 
 Değişken `if` bloklarının her birinde bulunan son ifadenin değeridir.
 
