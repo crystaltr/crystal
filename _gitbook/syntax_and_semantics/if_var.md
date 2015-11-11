@@ -1,6 +1,6 @@
 # if var
 
-If a variable is the condition of an `if`, inside the `then` branch the variable will be considered as not having the `Nil` type:
+Eğer bir değişken `if` koşulu içindeyse, `then` bloğu içinde `Nil` tipinde olmayacağı kabul edilir:
 
 ```crystal
 a = some_condition ? nil : 3
@@ -13,7 +13,7 @@ if a
 end
 ```
 
-This also applies when a variable is assigned in an `if`'s condition:
+Bir if koşulu içinde bir değişkene atama yapıldığı zaman içinde geçerlidir:
 
 ```crystal
 if a = some_expression
@@ -21,7 +21,7 @@ if a = some_expression
 end
 ```
 
-This logic also applies if there are ands (`&&`) in the condition:
+Eğer koşul içinde ve(`&&`) varsa mantık(logic) yapısı geçerlidir.
 
 ```crystal
 if a && b
@@ -29,11 +29,11 @@ if a && b
 end
 ```
 
-Here, the right-hand side of the `&&` expression is also guaranteed to have `a` as not `Nil`.
+Burada, `&&` ifadesinin sağ tarafında `a`'nın `Nil` olmadığı garantidir.
 
-Of course, reassigning a variable inside the `then` branch makes that variable have a new type based on the expression assigned.
+Tabiki, bir değişkene `then` bloğu içinde tekrar atama yapılırsa değişkenin atama ifadesine bağlı yeni bir tipi olur.
 
-The above logic **doesn’t** work with instance variables, class variables or global variables:
+Yukarıdaki mantık ifadesi instance değişkenler, class(sınıf) değişkenleri veya global değişkenler ile **çalışmaz**:
 
 ```crystal
 if @a
@@ -41,9 +41,9 @@ if @a
 end
 ```
 
-This is because any method call could potentially affect that instance variable, rendering it `nil`. Another reason is that another thread could change that instance variable after checking the condition.
+Bunun nedeni ise herhangi method çağrısının instance değişkenini etkileme olasılığıdır, onu `nil` şeklinde yorumlar. Bir diğer nedeni ise diğer threadlerin instance değişkeni koşuldan sonra değiştirebilmesidir.
 
-To do something with `@a` only when it is not `nil` you have two options:
+Yalnızca `nil` olmayan `@a` ile bir şeyler yapmak için iki seçeneğiniz vardır:
 
 ```crystal
 # First option: assign it to a variable
@@ -57,7 +57,7 @@ end
 end
 ```
 
-That logic also doesn't work with proc and method calls, including getters and properties, because nilable (or, more generally, union-typed) procs and methods aren't guaranteed to return the same more-specific type on two successive calls.
+Bu mantık yapısı, getter ve özellikleri(properties) içeren proc ve method çağrıları ile de çalışmıyor, çünkü nilable(veya, daha genel union tipli) proc'lar ve methodlar peş peşe aynı çağrılarda aynı tip dönmeyi garanti etmezler.
 
 ```crystal
 if method # first call to a method that can return Int32 or Nil
@@ -66,4 +66,4 @@ if method # first call to a method that can return Int32 or Nil
 end
 ```
 
-The techniques described above for instance variables will also work for proc and method calls.
+Instance değişkenler için yukarıda açıklanan teknikler, proc ve method çağrıları için de çalışacaktır
