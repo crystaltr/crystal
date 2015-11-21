@@ -1,6 +1,6 @@
 # alias
 
-With `alias` you can give a type a different name:
+`alias` kullanarak bir tipe başka bir isim verebilirsiniz:
 
 ```crystal
 alias PInt32 = Pointer(Int32)
@@ -8,9 +8,10 @@ alias PInt32 = Pointer(Int32)
 ptr = PInt32.malloc(1) # :: Pointer(Int32)
 ```
 
-Every time you use an alias the compiler replaces it with the type it refers to.
+Bir alias kullanıldığında derleyici bunu refere ettiği tiple ile değiştirir.
 
-Aliases are useful to avoid writing long type names, but also to be able to talk about recursive types:
+`alias`lar uzun tip isimlerini yazmanızı önlemesi sayesinde oldukça kullanışlıdır.
+Bunun yanında özyinelemeli tiplerden de bahsedebilmemizi sağlar.
 
 ```crystal
 alias RecArray = Array(Int32) | Array(RecArray)
@@ -21,7 +22,7 @@ ary.push ary
 ary #=> [[1, 2, 3], [...]]
 ```
 
-A real-world example of a recursive type is json:
+Gerçek hayatta karşımıza çıkan en yaygın özyinelemeli tiplerden biri ise json'dır.
 
 ```crystal
 module Json
