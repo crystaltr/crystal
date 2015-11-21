@@ -1,13 +1,13 @@
 # &&
 
-An `&&` (and) evaluates its left hand side. If it's *truthy*, it evaluates its right hand side and has that value. Otherwise it has the value of the left hand side. Its type is the union of the types of both sides.
+`&&` sağında ve solunda bulunan ifadeleri değerlendirir. Eğer doğru ise sağ tarafı değerlendirir ve onun değerini alır. Aksi takdirde sol tarafı değerlendirir ve onun değerini alır. Tipi sağ ve sol tarafta olabilecek tiplerin toplamıdır olan bir `union`dır.
 
-You can think an `&&` as syntax sugar of an `if`:
+`&&`i if yerine kullanılan bir syntax sugar olarak düşünebilirsiniz.
 
 ```crystal
 some_exp1 && some_exp2
 
-# The above is the same as:
+# Yukarıda kod ile aynı
 tmp = some_exp1
 if tmp
   some_exp2
