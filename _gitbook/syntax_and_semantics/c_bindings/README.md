@@ -1,4 +1,4 @@
-# C bindings (bağlamalar)
+# C bindings (bağlamaları)
 
 Crystal, mevcut C kütüphanelerini, tekbir satır C kodu yazmadan uygulamanıza dahil etmenizi sağlar.
 
