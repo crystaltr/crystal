@@ -1,6 +1,6 @@
 # as
 
-The `as` expression restricts the types of an expression. For example:
+`as` bir ifadenin tiplerini sınırlar. Örnek olarak:
 
 ```crystal
 if some_condition
@@ -12,58 +12,60 @@ end
 # a :: Int32 | String
 ```
 
-In the above code, `a` is a union of `Int32 | String`. If for some reason we are sure `a` is an `Int32` after the `if`, we can force the compiler to treat it like one:
+Yukarıdaki örnekte, `a` bir `Int32 | String` `union`idi. Eğer herhangi bir sebepten `a`nın `if`den sonra `Int32` olduğunu biliyorsak, derleyiciye buna göre davranmasını söyleyebiliriz:
 
 ```crystal
 a_as_int = a as Int32
-a_as_int.abs          # works, compiler knows that a_as_int is Int32
+a_as_int.abs # Çalışır, derleyici a_as_int in Int32 tipinde olduğunu biliyor.
 ```
 
-The `as` expression performs a runtime check: if `a` wasn't an `Int32`, an [exception](exception_handling.html) is raised.
+`as` ifadesi bir runtime check yapar: eğer `a` `Int32` değilse bir [exception](exception_handling.html) fırlatılır.
 
-The argument to the expression is a [type](type_grammar.html).
+`as` ifadesinin argümanı bir [type](type_grammar.html) olmak zorundadır.
 
-If it is impossible for a type to be restricted by another type, a compile-time error is issued:
+Bir tip başka bir tip tarafından sınırlandırılması mümkün değilse, bir compile-time hatası oluşur.
 
 ```crystal
-1 as String # Error
+1 as String # Hata
 ```
 
-**Note: ** you can't use `as` to convert a type to an unrelated type: `as` is not like a `cast` in other languages. Methods on integers, floats and chars are provided for these convertions. Alternatively, use pointer casts as explained below.
+**Not:** `as` ifadesini bir tipi ilgisi olmayan başka bir tipe çevirmek için kullanamazsınız: `as` başka dillerdeki `cast` ile aynı değildir. Integer, Float ve Char üzerindeki metodlar çevirme işleminde rahatlık sağlaması için sağlanmıştır. Başka bir seçenek ise, aşağıdaki gibi pointer type arasında çevirme yapmaktır.
 
-## Converting between pointer types
+## Pointer Tipleri arasında çevirme
 
-The `as` expression also allows to cast between pointer types:
+Ayrıca `as` ifadesi bize pointer tipleri arasında çevirme imkanı sağlar:
 
 ```crystal
 ptr = Pointer(Int32).malloc(1)
-ptr as Int8*                    #:: Pointer(Int8)
+ptr as Int8* #:: Pointer(Int8)
 ```
 
-In this case, no runtime checks are done: pointers are unsafe and this type of casting is usually only needed in C bindings and low-level code.
+Bu durumda herhangi bir runtime check yapılmaz. Pointer'lar unsafe'dir ve bu tarz bir çevirme sadece C binding yazarken ya da düşük-seviye kod için gereklidir.
 
-## Converting between pointer types and other types
+## Pointer Tipleri ve Referans Tipler arasında çevirme
 
-Conversion between pointer types and Reference types is also possible:
+Pointer tipleri ve refarans tipleri arasında çevirme yapılabilir.
 
 ```crystal
 array = [1, 2, 3]
 
-# object_id returns the address of an object in memory,
-# so we create a pointer with that address
+# object_id objenin bellekteki adresini döner,
+# bizde bu adresle bellekte bir pointer oluştururuz.
 ptr = Pointer(Void).new(array.object_id)
 
-# Now we cast that pointer to the same type, and
-# we should get the same value
+# Oluşturuduğumuz pointer'ı aynı tipe kastediyoruz.
+# Bu şekilde aynı değeri almalıyız.
 array2 = ptr as Array(Int32)
 array2.same?(array) #=> true
 ```
 
-No runtime checks are performed in these cases because, again, pointers are involved. The need for this cast is even more rare than the previous one, but allows to implement some core types (like String) in Crystal itself, and it also allows passing a Reference type to C functions by casting it to a void pointer.
+Bu durumlarda hiç bir runtime check yapılmaz çünkü işin içinde
+pointer'lar bulunmaktadır. Bu durum bir önceki örnekten daha
+nadir olsa da çeşitli temel tiplerin(Crystal standart kütüphanesinde bulunan String gibi) implemente edilmesine imkan tanır. Ayrıca referans tiplerin void pointer'a çevirilirek C fonksiyonlarına argümant olarak paslanmasına da imkan sağlar.
 
-## Usage for casting to a bigger type
+## Daha büyük bir tipe çevirme
 
-The `as` expression can be used to cast an expression to a "bigger" type. For example:
+`as` ifadesi bir ifadeyi daha büyük bir tipe çevirmek için kullanılabilir. Örnek olarak:
 
 ```crystal
 a = 1
@@ -71,23 +73,24 @@ b = a as Int32 | Float64
 b #:: Int32 | Float64
 ```
 
-The above might not seem to be useful, but it is when, for example, mapping an array of elements:
+Yukarıdaki örnek pek kullanlışlı olmayabilir, fakat aşağıdaki örnekteki gibi bir dizi elemanları üzerinde map işlemi uygularken:
 
 ```crystal
 ary = [1, 2, 3]
 
-# We want to create an array 1, 2, 3 of Int32 | Float64
+# İçinde 1,2,3 olan Int32 | Float64 olan bir array oluşturmak istiyoruz.
 ary2 = ary.map { |x| x as Int32 | Float64 }
 
 ary2 #:: Array(Int32 | Float64)
 ary2 << 1.5 # OK
 ```
 
-The `Array#map` method uses the block's type as the generic type for the Array. Without the `as` expression, the inferred type would have been `Int32` and we wouldn't have been able to add a `Float64` into it.
+`Array#map` metodu bloğun tipini kullanarak diziyi oluşturur.
+ `as` ifadesi olmasaydı, derleyici tipi `Int32` olarak anlamlandırırdı ve bizde diziye bir `Float64` değer ekleyemezdik.
 
-## Usage for when the compiler can't infer the type of a block
+## Derleyici bir block'un tipini anlamlandıramadığında
 
-Sometimes the compiler can't infer the type of a block. For example:
+Bazen derleyici bir block'un tipini anlamlandıramayabilir. Örnek olarak:
 
 ```crystal
 class Person
@@ -103,17 +106,17 @@ a = [] of Person
 x = a.map { |f| f.name } # Error: can't infer block return type
 ```
 
-The compiler needs the block's type for the generic type of the Array created by `Array#map`, but since `Person` was never instantiated, the compiler doesn't know the type of `@name`. In this cases you can help the compiler by using an `as` expression:
+Derleyici `Array#map` ile jenerik diziyi oluştururken block'un tipini bilmesi gerekiyor. Fakat `Person` sınıfından daha önce bir obje oluşturulmadığı için derleyici `@name`'in tipini bilemez. Bu tarz durumlarda `as` ifadesi kullanarak derleyiciye ilgili tipi söyleyebilirsiniz.
 
 ```crystal
 a = [] of Person
 x = a.map { |f| f.name as String } # OK
 ```
 
-This error isn't very frequent, and is usually gone if a `Person` is instantiated before the map call:
+Bu hata çok yaygın değildir, ve `Array#map` işleminden önce `Person` sınfından bir nesne oluşturulursa ortadan kalkar:
 
 ```crystal
-Person.new "John"
+Person.new "Serdar"
 
 a = [] of Person
 x = a.map { |f| f.name as String } # OK
