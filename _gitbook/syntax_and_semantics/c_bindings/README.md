@@ -1,5 +1,5 @@
-# C bindings
+# C bindings (bağlamalar)
 
-Crystal allows you to bind to existing C libraries without writing a single line in C.
+Crystal, mevcut C kütüphanelerini, tekbir satır C kodu yazmadan uygulamanıza dahil etmenizi sağlar.
 
-Additionally, it provides some conveniences like `out` and `to_unsafe` so writing bindings is as painless as possible.
+Ayrıca, `out` ve `to_unsafe` gibi bazı kolaylıklar sağlar yani binding (bağlama) işlemi mümkün olduğunca ağrısız olur.
