@@ -1,28 +1,29 @@
-# Attributes
+# Özellikler (Attributes)
 
-Some types and methods can be annotated with attributes. The attribute list is fixed, but eventually (maybe) there will be user-defined attributes.
+Bazı tipler ve metodlar özellik ile işaretlenebilir. Şu an için
+özellik sayısı sınırlı fakat gelecekte kullanıcı tanımlı özellikler olacak.
 
 ## Link
 
-Tells the compiler how to link a C library. This is explained in the [lib](c_bindings/lib.html) section.
+Derleyiciye bir C kütüphanesine nasıl bağlanacağını söyler. Bu [lib](c_bindings/lib.html) sekmesinde detaylı olarak anlatılmıştır.
 
 ## ThreadLocal
 
-The `@[ThreadLocal]` attribute can be applied to global variables and class variables. It makes them be thread local.
+`@[ThreadLocal]` özelliği global ve sınıf değişkenlerine uygulanabilir. Bunları her thread'e lokal hale getirir.
 
 ```crystal
-# One for each thread
+# Her thread için bir adet
 @[ThreadLocal]
 $values = [] of Int32
 ```
 
 ## Packed
 
-Allows marking a [C struct](c_bindings/struct.html) as packed, which makes the alignment of the struct to be one byte, and that there is no padding between the elements. In non-packed structs, padding between field types is inserted according to the target system.
+Bir [C struct](c_bindings/struct.html)'ı packed olarak işaretlememizi sağlar. Bu struct'ın hizalamasını bir byte yapar ve alanlar arasında hiç padding olmamasını sağlar. packed olmayan struct'larda alanlar arasındaki padding hedef sisteme göre eklenir.
 
 ## AlwaysInline
 
-Gives a hint to the compiler to always inline a method:
+Derleyiciye her zaman bu metodu inline etmesi gerektiğini söyler.
 
 ```crystal
 @[AlwaysInline]
@@ -33,7 +34,7 @@ end
 
 ## NoInline
 
-Tells the compiler to never inline a method call. This has no effect if the method yields.
+Derleyiciye hiç bir zaman bu metodu inline etmemesi gerektiğini söyler. Eğer yield eden bir metod ise bu özellik çalışmaz.
 
 ```crystal
 @[NoInline]
@@ -44,15 +45,15 @@ end
 
 ## ReturnsTwice
 
-Marks a method or [lib fun](c_bindings/fun.html) as returning twice. The C `setjmp` is an example of such a function.
+Bir metodu ya da [lib fun](c_bindings/fun.html) iki kere return ediyor olarak belirtir. C `setjmp` buna güzel bir örnektir.
 
 ## Raises
 
-Marks a method or [lib fun](c_bindings/fun.html) as potentially raising an exception. This is explained in the [callbacks](c_bindings/callbacks.html) section.
+Bir metodu ya da [lib fun](c_bindings/fun.html) potansiyel olarak exception fırlatabilir olarak işaretler.[callbacks](c_bindings/callbacks.html) bölümünde detaylı olarak açıklanmıştır.
 
 ## CallConvention
 
-Indicates the call convention of a [lib fun](c_bindings/fun.html). For example:
+[lib fun](c_bindings/fun.html) call convention'ını belirtir. Örnek olarak:
 
 ```crystal
 lib LibFoo
@@ -61,9 +62,9 @@ lib LibFoo
 end
 ```
 
-The list of valid call conventions is:
+Geçerli call convention listesi.
 
-* C (the default)
+* C (varsayılan)
 * Fast
 * Cold
 * WebKit_JS
@@ -71,8 +72,8 @@ The list of valid call conventions is:
 * X86_StdCall
 * X86_FastCall
 
-They are explained [here](http://llvm.org/docs/LangRef.html#calling-conventions).
+Detaylı olarak [burada](http://llvm.org/docs/LangRef.html#calling-conventions) açıklanmıştır.
 
 ## Flags
 
-Marks an [enum](enum.html) as a "flags enum", which changes the behaviour of some of its methods, like `to_s`.
+[enum](enum.html)'u "flags enum" olarak işaretler, `to_s` gibi bazı metodların davranışını değiştirir.
